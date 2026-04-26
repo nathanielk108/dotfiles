@@ -47,3 +47,5 @@ floatrun() {
     hyprctl dispatch -- exec "[float; center]" "$@"
 }
 
+set -o vi
+
