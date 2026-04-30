@@ -2,55 +2,45 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
+    branch = "main",
     build = ":TSUpdate",
-    config = function()
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-        ensure_installed = {
-          "c",
-          "cpp",
-          "lua",
-          "vim",
-          "vimdoc",
-          "html",
-          "markdown",
-          "markdown_inline",
-          "bash",
-          "asm",
-          "python",
-        },
-        sync_install = false,
-        indent = { enable = true },
-
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-          disable = function(lang, buf)
-            local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-              return true
-            end
-          end,
-        },
-
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<Enter>",
-            node_incremental = "<Enter>",
-            scope_incremental = false, -- Set to 'false' to disable a mapping
-            node_decremental = "<Backspace>",
-          },
-        },
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          -- Enable treesitter highlighting and disable regex syntax
+          pcall(vim.treesitter.start)
+          -- Enable treesitter-based indentation
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
       })
+
+      local ensureInstalled = {
+        "c",
+        "cpp",
+        "lua",
+        "vim",
+        "vimdoc",
+        "html",
+        "markdown",
+        "markdown_inline",
+        "bash",
+        "asm",
+        "python",
+      }
+      local alreadyInstalled = require("nvim-treesitter.config").get_installed()
+      local parsersToInstall = vim
+        .iter(ensureInstalled)
+        :filter(function(parser)
+          return not vim.tbl_contains(alreadyInstalled, parser)
+        end)
+        :totable()
+      require("nvim-treesitter").install(parsersToInstall)
     end,
     keys = {
       {
         "<leader>lI",
         "<Cmd>Inspect<CR>",
-        mode = { 'n', 'v' },
+        mode = { "n", "v" },
         desc = "[L]anguage Syntax [I]nspection",
       },
       {

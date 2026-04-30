@@ -31,7 +31,7 @@ map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Textobject Mappings
-local swap = require("nvim-treesitter.textobjects.swap")
+local swap = require("nvim-treesitter-textobjects.swap")
 
 local swap_next = function()
   local count = vim.v.count1

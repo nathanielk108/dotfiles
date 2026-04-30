@@ -7,7 +7,7 @@ return {
   -- branch = "nightly",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    { "m00qek/baleia.nvim", tag = "v1.3.0" }, -- allow ANSI Escape Code coloring
+    -- { "m00qek/baleia.nvim", tag = "v1.3.0" }, -- allow ANSI Escape Code coloring
   },
   config = function()
     ---@type CompileModeOpts
@@ -19,7 +19,7 @@ return {
         -- set this to fix tab completion in command mode:
         -- input_word_completion = true,
 
-        baleia_setup = true, -- enable ANSI Escape Code coloring
+        -- baleia_setup = true, -- enable ANSI Escape Code coloring
 
         -- to make `:Compile` replace special characters (e.g. `%`) in
         -- the command (and behave more like `:!`), add:
