@@ -27,7 +27,8 @@ vim.opt.wrap = false
 -- Configures how vim stores edit history and whether it creates a swapfile
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+local home = vim.env.HOME or vim.env.USERPROFILE   
+vim.opt.undodir = home .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- Configures vim searching to assume case insensitivty unless you explicitly type a capital character
