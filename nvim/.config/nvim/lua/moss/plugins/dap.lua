@@ -51,7 +51,9 @@ return {
         type = "gdb",
         request = "launch",
         program = function()
-          return vim.ui.input("Path to exectuable: ", vim.fn.getcwd() .. "/", "file")
+          return vim.ui.input("Path to exectuable: ", function(input)
+            return vim.fn.getcwd() .. "/" .. input
+          end)
         end,
         args = function()
           vim.ui.input("Arguments: ", function(input)

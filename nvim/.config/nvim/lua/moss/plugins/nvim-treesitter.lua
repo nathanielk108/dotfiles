@@ -28,6 +28,7 @@ return {
         "python",
         "rust",
         "zig",
+        "make",
       }
       local alreadyInstalled = require("nvim-treesitter.config").get_installed()
       local parsersToInstall = vim

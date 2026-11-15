@@ -88,7 +88,7 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
-export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | batcat -p -lman'"
+export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | batcat --theme=ansi -p -lman'"
 
 set -o vi
 
@@ -102,4 +102,9 @@ if [ -f ~/.cache/wal/sequences ] ; then (cat ~/.cache/wal/sequences &) ; fi
 export PATH="$PATH:$HOME/.local/bin"
 . "$HOME/.cargo/env"
 
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/dev/lib"
+
 source /home/super/perl5/perlbrew/etc/bashrc
+source /home/super/workshop/patrios/ardupilot/Tools/completion/completion.bash
+source /opt/ros/jazzy/setup.bash
+source /home/super/workshop/bqx3vn/autonomous_mobile_robots/install/setup.bash
