@@ -14,6 +14,7 @@ alias grep='grep --color=auto'
 alias fast='fastfetch'
 alias mn='tldr --pager'
 alias cman='cppman'
+alias apvlv='apvlv -c ~/.apvlvrc'
 
 alias vg='valgrind'
 alias gccw='gcc -Wall -Wextra -Wpedantic'
